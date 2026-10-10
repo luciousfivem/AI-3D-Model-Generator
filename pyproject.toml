@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "forge3d"
+version = "0.1.0"
+description = "A local, subscription-free AI 3D model generator for 3D printing (text/image -> printable mesh)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "networkx>=3.0",
+    "lxml>=5.0",
+    "trimesh>=4.4",
+    "rtree>=1.2",
+    "mapbox-earcut>=1.0",
+    "scikit-image>=0.22",
+    "fast-simplification>=0.1.7",
+    "Pillow>=10.0",
+    "platformdirs>=4.0",
+    "PySide6-Essentials>=6.6",
+    "pyqtgraph>=0.14",
+    "PyOpenGL>=3.1.7",
+]
+
+[project.optional-dependencies]
+# PyTorch is installed separately (scripts/install.ps1) so that the CUDA build is used, and hy3dgen is
+# installed with --no-deps (its declared requirements include a web demo we do not need).
+# transformers < 5 and huggingface_hub < 1: hy3dgen 2.0.2 fails to load its image encoder on transformers 5.
+ai = [
+    "diffusers>=0.30,<0.40",
+    "transformers>=4.48,<5",
+    "huggingface_hub>=0.24,<1",
+    "accelerate>=0.30",
+    "safetensors>=0.4",
+    "einops",
+    "omegaconf",
+    "pyyaml",
+    "opencv-python-headless",
+    "pymeshlab",
+    "pygltflib",
+    "xatlas",
+    "rembg",
+    "onnxruntime",
+]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+forge3d = "forge3d.cli:main"
+
+[project.gui-scripts]
+forge3d-gui = "forge3d.ui.app:main"
+
+[tool.setuptools.packages.find]
+include = ["forge3d*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: runs a real neural network (needs the AI stack and downloaded weights)",
+    "gui: needs Qt + OpenGL (run under xvfb on headless Linux)",
+]

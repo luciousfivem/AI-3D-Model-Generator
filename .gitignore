@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+.pytest_cache/
+.idea/
+.vscode/
+*.log
+# downloaded AI models and generated files never belong in git
+models/
+output/
+*.safetensors
+*.ckpt

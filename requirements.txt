@@ -1,0 +1,15 @@
+# Core app: GUI, mesh processing, print prep. (No AI models; see requirements-ai.txt.)
+numpy>=1.26
+scipy>=1.11
+networkx>=3.0
+lxml>=5.0
+trimesh>=4.4
+rtree>=1.2
+mapbox-earcut>=1.0
+scikit-image>=0.22
+fast-simplification>=0.1.7
+Pillow>=10.0
+platformdirs>=4.0
+PySide6-Essentials>=6.6
+pyqtgraph>=0.14
+PyOpenGL>=3.1.7

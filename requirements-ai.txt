@@ -1,0 +1,22 @@
+# AI stack. Install PyTorch *first* from the right index (scripts/install.ps1 does this), then:
+#   pip install -r requirements.txt -r requirements-ai.txt
+#   pip install --no-deps hy3dgen==2.0.2
+#
+# Version limits are deliberate:
+#  - transformers < 5: hy3dgen 2.0.2 cannot load its image encoder on transformers 5 (layer names changed)
+#  - huggingface_hub < 1: required by transformers 4.x
+#  - diffusers < 0.40: newer releases need huggingface_hub >= 1
+diffusers>=0.30,<0.40
+transformers>=4.48,<5
+huggingface_hub>=0.24,<1
+accelerate>=0.30
+safetensors>=0.4
+einops
+omegaconf
+pyyaml
+opencv-python-headless
+pymeshlab
+pygltflib
+xatlas
+rembg
+onnxruntime
